@@ -1,0 +1,64 @@
+###Read all users
+GET http://localhost:3000/user-api/users
+
+### Read a user by id
+GET http://localhost:3000/user-api/users/10
+
+
+### Create new user
+POST http://localhost:3000/user-api/users
+Content-Type: application/json
+
+{
+    "id":10,
+    "name":"krish",
+    "age":18
+}
+
+### Update a user
+PUT http://localhost:3000/user-api/users
+Content-Type: application/json
+
+{
+    "id":10,
+    "name":"vishwa",
+    "age":18
+}
+
+### delete the user by id
+DELETE http://localhost:3000/user-api/users/10
+
+
+
+
+###Read all products
+GET http://localhost:3000/product-api/products
+
+### Read a prodct by id
+GET http://localhost:3000/product-api/products/Nike
+//we need to write the line break
+
+### Create new product
+POST http://localhost:3000/product-api/products
+Content-Type: application/json
+
+{
+    "productId":2,
+    "name":"bike",
+    "brand":"nike",
+    "price":2000
+}
+
+### update product by 
+PUT http://localhost:3000/product-api/products
+Content-Type: application/json
+
+{
+    "productId":2,
+    "name":"cap",
+    "brand":"Nike",
+    "price":2500
+}
+
+###delete the product by id
+DELETE http://localhost:3000/product-api/products/2

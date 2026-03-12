@@ -1,0 +1,45 @@
+###Read all users
+GET http://localhost:3000/product-api/products
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro
+
+### Read a user by id
+GET http://localhost:3000/product-api/products/162
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro
+
+### Create new user
+POST http://localhost:3000/product-api/products
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro
+
+{
+    "productId":163,
+    "productName":"cock",
+    "price":10000,
+    "brand":"feather"
+}
+
+###product login
+POST http://localhost:3000/product-api/auth
+Content-Type: application/json
+
+{
+    "productId":163,
+    "productName":"cock"
+}
+
+
+### update a product by id
+PUT http://localhost:3000/product-api/products/162
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro
+
+{
+    "productId":162,
+    "productName":"shoes",
+    "price":10000,
+    "brand":"BATA"
+}
+
+###
+DELETE http://localhost:3000/product-api/products/69abf9b970aad245493435fe
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro

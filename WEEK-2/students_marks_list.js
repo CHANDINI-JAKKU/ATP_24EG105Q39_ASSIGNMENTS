@@ -1,0 +1,11 @@
+const marks=[78,92,35,88,40,67];
+const m1=marks.filter(mark=>mark>=40)
+console.log(m1)
+const m2=marks.map(mark=>mark+5)
+console.log(m2)
+const m3=marks.reduce((acc,ele)=>acc>ele?acc:ele)
+console.log(m3)
+const m4=marks.find(ele=>ele<40)
+console.log(m4)
+const m5=marks.findIndex(ele=>ele===92)
+console.log(m5)
