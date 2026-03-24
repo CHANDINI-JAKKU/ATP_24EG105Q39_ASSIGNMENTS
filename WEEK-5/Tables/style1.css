@@ -1,0 +1,18 @@
+table{
+    width:700px;
+    margin:auto;
+    border-collapse:collapse;
+    border:3px solid black;
+}
+th,td{
+    border:1px solid black;
+    padding:10px;
+    text-align:center;
+}
+.title{
+    font-size:20px;
+    font-weight:bold;
+}
+.subtitle1{
+    font-weight:bold;
+}
