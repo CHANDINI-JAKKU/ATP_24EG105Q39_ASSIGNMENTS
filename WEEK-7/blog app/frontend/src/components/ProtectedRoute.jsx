@@ -11,7 +11,6 @@ function ProtectedRoute({ children, allowedRoles }) {
   }
   //if user not loggedin
   if (!isAuthenticated) {
-    toast.error("Redirecting to Login")
     //redirect to Login
     return <Navigate to="/login" replace />;
   }
