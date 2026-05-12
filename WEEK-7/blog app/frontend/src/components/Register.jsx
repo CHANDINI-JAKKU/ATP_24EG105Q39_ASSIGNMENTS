@@ -9,11 +9,11 @@ import {
   pageBackground,
   submitBtn,
   mutedText,
-} from "../styles/common";
+} from "../styles/common.js";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/axiosInstance.js"
 
 function Register() {
   const {
@@ -23,44 +23,33 @@ function Register() {
   } = useForm();
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
-  const [preview, setPriview] = useState(null);
-  const navigate = useNavigate();
+  const navigate=useNavigate()
 
   //When user registration submitted
   const onUserRegister = async (userObj) => {
     console.log(userObj);
-    let {profileImageUrl}=userObj
-    // file + userObj -->FormData
-    //create ForMData object
-    const formData = new FormData();
-    //add all user properties and file to this formdata object
-    formData.append("role", userObj.role);
-    formData.append("firstName", userObj.firstName);
-    formData.append("lastName", userObj.lastName);
-    formData.append("email", userObj.email);
-    formData.append("password", userObj.password);
-    //Append if image is exists
-    if (profileImageUrl?.[0]) {
-      formData.append("profileImageUrl", profileImageUrl[0]);
-    }
-   console.log(profileImageUrl)
     try {
-      //start loading
-      setLoading(true);
-      //make HTTP POST req to create User in backend
-      let res = await axios.post("http://localhost:5000/auth/users", formData,{withCredentials:true});
-
-      if (res.status === 201) {
-        //navigate to Login
-        navigate("/login");
+      //Start loading
+      setLoading(true)
+      //Make HTTP POST request to create user in backend
+      let res=await api.post("/common-api/users",userObj)
+      if(res.status===201){
+        navigate("/login")
       }
+      //Navigate to login
     } catch (err) {
       console.log("err in registration", err);
-      setApiError(err.response?.data?.message || err.response?.data?.error || err.message || "Registration failed");
+      setApiError(err.response?.data?.error || "Registration failed");
     } finally {
       setLoading(false);
     }
   };
+  if(loading){
+    return <p className="text-3xl text-center">Loading...</p>
+  }
+  if(apiError){
+    return <p className="text-red-500">{apiError}</p>
+  }
 
   return (
     <div className={`${pageBackground} flex items-center justify-center py-16 px-4`}>
@@ -68,7 +57,7 @@ function Register() {
         <h2 className={formTitle}>Create an Account</h2>
 
         {/* API Error */}
-        {apiError && <p className={errorClass}>{apiError}</p>}
+        {/* {apiError && <p className={errorClass}>{apiError}</p>} */}
 
         <form onSubmit={handleSubmit(onUserRegister)}>
           {/* ROLE */}
@@ -156,6 +145,7 @@ function Register() {
               placeholder="you@example.com"
               {...register("email", {
                 required: "Email is required",
+                // required: [true, "Password is required"],
               })}
             />
             {errors.email && <p className={errorClass}>{errors.email.message}</p>}
@@ -175,42 +165,14 @@ function Register() {
             {errors.password && <p className={errorClass}>{errors.password.message}</p>}
           </div>
 
-          {/* PROFILE IMAGE */}
+          {/* PROFILE IMAGE
           <div className={formGroup}>
             <label className={labelClass}>Profile Image</label>
 
-            <input
-              type="file"
-              className={inputClass}
-              accept="image/png, image/jpeg"
-              {...register("profileImageUrl", {
-                validate: {
-                  fileType: (files) => {
-                    if (!files?.[0]) return true;
-                    return ["image/png", "image/jpeg"].includes(files[0].type) || "Only JPG/PNG allowed";
-                  },
-                  fileSize: (files) => {
-                    if (!files?.[0]) return true;
-                    return files[0].size <= 2 * 1024 * 1024 || "MAx size 2MB";
-                  },
-                },
-              })}
-              onChange={(event) => {
-                let file = event.target.files[0];
-                if (file) {
-                  setPriview(URL.createObjectURL(file));
-                }
-              }}
-            />
+            <input type="text" accept="image/png, image/jpeg" {...register("profileImageUrl")} />
 
             {errors.profileImageUrl && <p className={errorClass}>{errors.profileImageUrl.message}</p>}
-            {/* image preview */}
-            {preview && (
-              <div className="mt-3 flex justify-center">
-                <img src={preview} alt="" className="w-24 h-24 rounded-full object-cover" />
-              </div>
-            )}
-          </div>
+          </div> */}
 
           {/* SUBMIT */}
           <button type="submit" className={submitBtn}>
