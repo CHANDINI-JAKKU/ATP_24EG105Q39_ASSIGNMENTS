@@ -1,66 +1,58 @@
-### Register User
-POST http://localhost:4000/auth/users
+### Register Author
+POST http://localhost:5000/common-api/users
 Content-Type: application/json
 
 {
-  "firstName": "author2",
-  "lastName": "",
-  "email": "author2@mail.com",
-  "role":"AUTHOR",
-  "password": "author2",
-  "profileImageUrl": "https://example.com/avatars/user.png"
+   "firstName":"Author2",
+    "lastName":"a2",
+    "email":"author2@gmail.com",
+    "password":"Author2",
+    "role":"AUTHOR",
+    "profileImageURL":"https://example.com/avatars/user.png"
 }
 
-
-### Create new Article
-POST http://localhost:4000/author-api/article
+### Author login
+POST http://localhost:5000/common-api/login
 Content-Type: application/json
 
 {
-  "author":"69b38fa58faa3804b6121696",
-  "title":"Article-2 by Author 1",
-  "category":"AI",
-  "content":"test article on AI"
-  
+    "email":"author1@gmail.com",
+    "password":"Author1"
 }
-
-
-
-### Author Login
-POST http://localhost:4000/auth/login
-Content-Type: application/json
-
-{
-  "email":"author1@mail.com",
-  "password":"author1"
-}
-
 
 ### Author logout
-GET http://localhost:4000/auth/logout
+GET  http://localhost:5000/common-api/logout
 
-
-### Read own articles
-GET http://localhost:4000/author-api/articles
-
-### Update article by author
-PUT http://localhost:4000/author-api/articles
+### Create new Article
+POST http://localhost:5000/author-api/article
 Content-Type: application/json
 
 {
-  "articleId":"69b3c780ad975da58dbd3ba1",
-  "title":"Article-2 by Author 1",
-  "category":"AI",
-  "content":"test article on AI and its updated"
-  
+    "author":"69b3aa86840f6241309b8013",
+    "title":"Article-2 by Author1",
+    "category":"Programming",
+    "content":"C is a programming language"
 }
 
+### Read own Articles
+GET http://localhost:5000/author-api/article
 
-### Delete / restore anarticle by Article ID (soft delete)
-PATCH http://localhost:4000/author-api/articles
+### Update article by author
+PUT http://localhost:5000/author-api/article
 Content-Type: application/json
 
 {
-  "articleId":"69b3a8f881ab391ebe9a7435",
-  "isArticleActive":true
+    "articleId":"69b3e1da9050049a5ebfa445",
+    "title":"Article-1 by Author1",
+    "category":"MECH",
+    "content":"MECH is a interesting course"
+}
+
+### Delete/Restore an article by Article ID(soft delete)
+PATCH http://localhost:5000/author-api/article
+Content-Type: application/json
+
+{
+ "articleId":"69b3a8f881ab391ebe9a7435",
+ "isArticleActive":true
 }
