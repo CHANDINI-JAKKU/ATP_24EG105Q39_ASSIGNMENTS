@@ -17,7 +17,7 @@ app.use(cors({
   origin: (origin, callback) => {
     if (
       !origin ||
-      origin === "http://localhost:5173" ||
+      origin === "http://localhost:5174" ||
       /^https:\/\/.*\.vercel\.app$/.test(origin)
     ) {
       callback(null, true);
