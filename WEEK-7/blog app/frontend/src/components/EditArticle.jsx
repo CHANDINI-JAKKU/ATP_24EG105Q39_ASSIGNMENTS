@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
-import axios from "axios";
-
-
+import api from "../api/axiosInstance.js";
 import {
   formCard,
   formTitle,
@@ -13,7 +11,7 @@ import {
   submitBtn,
   errorClass,
   articlePageWrapper,
-} from "../styles/common";
+} from "../styles/common.js";
 
 function EditArticle() {
   const location = useLocation();
@@ -43,7 +41,7 @@ function EditArticle() {
     //add articleId to modified article
     modifiedArticle.articleId=article._id;
     //make PUT req to update article
-    let res=await axios.put("http://localhost:5000/author-api/articles",
+    let res=await api.put("/author-api/article",
       modifiedArticle,
       {withCredentials:true})
     //naviagte to articleById component
