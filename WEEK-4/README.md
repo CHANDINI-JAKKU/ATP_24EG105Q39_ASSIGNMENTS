@@ -82,10 +82,5 @@ WEEK-4/
 
 ---
 
-##  Author
-- Name: Chandini
-
----
-
 ##  Conclusion
 These assignments helped in understanding the basics of HTML and webpage design by practicing different HTML elements and page structures.
