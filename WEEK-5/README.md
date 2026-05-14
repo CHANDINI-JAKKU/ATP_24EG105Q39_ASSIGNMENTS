@@ -11,14 +11,14 @@ This folder contains Week 5 web projects focused on layout design, React practic
 - Includes responsive alignment, spacing, and content distribution examples
 
 ### 2. Products React App
-- `products_react_app/index.html`
-- `products_react_app/src/`
-- A React-based project for displaying or managing product data
+- `products_react_app/`
+- A React-based project displaying a product catalog using mock data.
+- **Key Features**: Clean component structure (`ProductList` -> `Product`) and separate data files for modularity.
 
 ### 3. Users React App
-- `users_react_app/index.html`
-- `users_react_app/src/`
-- A React-based project for handling user-related UI or data
+- `users_react_app/`
+- A React-based project displaying a list of user profiles.
+- **Key Features**: Modular component architecture (`UsersList` -> `User`) with separated mock data.
 
 ### 4. Tables
 - `Tables/table1.html`, `Tables/table2.html`, `Tables/table3.html`
