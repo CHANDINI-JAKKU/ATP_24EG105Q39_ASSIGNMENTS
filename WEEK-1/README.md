@@ -94,7 +94,7 @@ not found
 
 ---
 
-## 👩‍💻 Author
+##  Author
 - Name: Chandini
 
 ---
