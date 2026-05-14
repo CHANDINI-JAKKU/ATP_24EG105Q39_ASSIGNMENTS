@@ -29,7 +29,7 @@ Content-Type: application/json
 
 
 ### update a product by id
-PUT http://localhost:3000/product-api/products/162
+PUT http://localhost:3000/product-api/products/163
 Content-Type: application/json
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro
 
@@ -41,5 +41,5 @@ Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0I
 }
 
 ###
-DELETE http://localhost:3000/product-api/products/69abf9b970aad245493435fe
+DELETE http://localhost:3000/product-api/products/162
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOjE2MywiaWF0IjoxNzczMzM2NjU2LCJleHAiOjE3NzMzNDAyNTZ9.UaRRs9ks3mDvKTs0HI5azBFsOgrh9NkFQFVMjm1iQro

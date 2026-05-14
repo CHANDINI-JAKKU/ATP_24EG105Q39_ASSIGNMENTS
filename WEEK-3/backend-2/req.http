@@ -3,7 +3,7 @@ GET http://localhost:3000/user-api/users
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNoQGdtYWlsLmNvbSIsImlhdCI6MTc3MzMzNjU1MSwiZXhwIjoxNzczMzQwMTUxfQ.VQSNqIVxOMR5Yeh1FKpfJZ-bpBkwmHp4l2axVwOwziM
 
 ### Read a user by id
-GET http://localhost:3000/user-api/users/69b2f1c50173e99336e4bdf1
+GET http://localhost:3000/user-api/users/69be94ef677f28f25f9d5028
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNoQGdtYWlsLmNvbSIsImlhdCI6MTc3MzMzNjU1MSwiZXhwIjoxNzczMzQwMTUxfQ.VQSNqIVxOMR5Yeh1FKpfJZ-bpBkwmHp4l2axVwOwziM
 
 ### Create new user
@@ -21,7 +21,7 @@ Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNoQGdtYWlsL
 
 
 ### 
-PUT http://localhost:3000/user-api/users/69b2f0e6b133e7f2d5559d0a
+PUT http://localhost:3000/user-api/users/69be94ef677f28f25f9d5028
 Content-Type: application/json
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNoQGdtYWlsLmNvbSIsImlhdCI6MTc3MzMzNjU1MSwiZXhwIjoxNzczMzQwMTUxfQ.VQSNqIVxOMR5Yeh1FKpfJZ-bpBkwmHp4l2axVwOwziM
 
@@ -42,5 +42,5 @@ Content-Type: application/json
 }
 
 ###delete user
-DELETE http://localhost:3000/user-api/users/69b2f1c50173e99336e4bdf1
+DELETE http://localhost:3000/user-api/users/69be94ef677f28f25f9d5028
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNoQGdtYWlsLmNvbSIsImlhdCI6MTc3MzMzNjU1MSwiZXhwIjoxNzczMzQwMTUxfQ.VQSNqIVxOMR5Yeh1FKpfJZ-bpBkwmHp4l2axVwOwziM
