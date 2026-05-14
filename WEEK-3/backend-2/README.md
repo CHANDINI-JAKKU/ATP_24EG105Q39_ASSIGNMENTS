@@ -1,92 +1,132 @@
-# Week 3 - Backend 2
+# Week 3 - Backend 2: REST API with Authentication & MongoDB
 
 ## Project Overview
-This folder contains a Node.js backend project built with Express and MongoDB.
-The application implements user and product APIs with authentication, authorization, CRUD operations, and data validation.
 
-## Features
-- User registration with password hashing using `bcryptjs`
-- User login with JWT tokens stored as HTTP-only cookies
-- Protected routes using a `verifyToken` middleware
-- User and product CRUD operations
-- Mongoose schemas with validation rules
-- Centralized error handling for validation and cast errors
+This project is a Node.js/Express backend that implements **full CRUD operations** for **Users** and **Products** with **JWT-based authentication**. Data is stored in MongoDB using Mongoose.
+
+The key learning in this week is implementing **protected routes** — routes that only logged-in users can access, verified using a **JWT token stored in an HTTP-only cookie**.
+
+---
+
+## How Authentication Works
+
+1. User/Product **registers** → password is **hashed** using bcryptjs before saving to DB.
+2. User/Product **logs in** → password is compared with the stored hash.
+3. On successful login → a **JWT token is signed** and stored in an **HTTP-only cookie**.
+4. For **protected routes** → the `verifyToken` middleware reads the cookie, verifies the token, and allows/blocks the request.
+
+---
 
 ## Technologies Used
-- Node.js
-- Express
-- MongoDB / Mongoose
-- JWT (`jsonwebtoken`)
-- Bcrypt (`bcryptjs`)
-- Cookie Parser (`cookie-parser`)
-- dotenv
 
-## Folder Structure
+| Technology | Purpose |
+| :--- | :--- |
+| Node.js | JavaScript runtime |
+| Express | Web framework and routing |
+| MongoDB | NoSQL database |
+| Mongoose | MongoDB ODM for schema and validation |
+| bcryptjs | Password hashing and comparison |
+| jsonwebtoken | JWT token signing and verification |
+| cookie-parser | Reading cookies from HTTP requests |
+
+---
+
+## Project Structure
 
 ```
-WEEK-3/backend-2/
+backend-2/
 ├── APIs/
-│   ├── ProductAPI.js
-│   └── UserAPI.js
-├── auth/
-│   └── auth.js
+│   ├── UserAPI.js        → User login and CRUD routes
+│   └── ProductAPI.js     → Product login and CRUD routes
 ├── middlewares/
-│   └── verifyToken.js
+│   └── verifyToken.js    → JWT verification middleware
 ├── models/
-│   ├── ProductModel.js
-│   └── UserModel.js
-├── node_modules/
-├── package.json
-├── package-lock.json
-├── req.http
-├── req1.http
-├── server.js
-└── .gitignore
+│   ├── UserModel.js      → Mongoose schema for users
+│   └── ProductModel.js   → Mongoose schema for products
+├── server.js             → App entry point, DB connection, error handler
+├── req.http              → Sample HTTP requests for User API
+├── req1.http             → Sample HTTP requests for Product API
+└── package.json
 ```
+
+---
+
+## Data Models
+
+### User Schema
+| Field | Type | Validation |
+| :--- | :--- | :--- |
+| username | String | Required, min 4 chars, max 6 chars |
+| password | String | Required (stored as bcrypt hash) |
+| email | String | Required, must be unique |
+| age | Number | Optional |
+
+### Product Schema
+| Field | Type | Validation |
+| :--- | :--- | :--- |
+| productId | Number | Required |
+| productName | String | Required |
+| price | Number | Required, min 10000, max 50000 |
+| brand | String | Required |
+
+---
 
 ## API Endpoints
 
-### User APIs
-- `POST /user-api/users` - Create a new user
-- `POST /user-api/auth` - Login user and receive a JWT cookie
-- `GET /user-api/users` - Get all users (protected)
-- `GET /user-api/users/:id` - Get user by ID
-- `PUT /user-api/users/:id` - Update user by ID
-- `DELETE /user-api/users/:id` - Delete user by ID
+### User API (`/user-api`)
 
-### Product APIs
-- `POST /product-api/products` - Create a new product
-- `POST /product-api/auth` - Login product by productId and productName
-- `GET /product-api/products` - Get all products (protected)
-- `GET /product-api/products/:productId` - Get product by productId (protected)
-- `PUT /product-api/products/:productId` - Update product by productId (protected)
-- `DELETE /product-api/products/:productId` - Delete product by productId (protected)
+| Method | Endpoint | Auth Required | Description |
+| :--- | :--- | :---: | :--- |
+| POST | `/user-api/users` | No | Register a new user |
+| POST | `/user-api/auth` | No | Login — returns JWT in cookie |
+| GET | `/user-api/users` | Yes | Get all users |
+| GET | `/user-api/users/:id` | No | Get a user by MongoDB ID |
+| PUT | `/user-api/users/:id` | No | Update a user by ID |
+| DELETE | `/user-api/users/:id` | No | Delete a user by ID |
+
+### Product API (`/product-api`)
+
+| Method | Endpoint | Auth Required | Description |
+| :--- | :--- | :---: | :--- |
+| POST | `/product-api/products` | No | Add a new product |
+| POST | `/product-api/auth` | No | Login — returns JWT in cookie |
+| GET | `/product-api/products` | Yes | Get all products |
+| GET | `/product-api/products/:productId` | Yes | Get product by productId |
+| PUT | `/product-api/products/:productId` | Yes | Update product by productId |
+| DELETE | `/product-api/products/:productId` | Yes | Delete product by productId |
+
+---
 
 ## Getting Started
 
+### Prerequisites
+- Node.js installed
+- MongoDB running locally on port 27017
+
+### Steps
+
 1. Install dependencies:
+   ```
+   npm install
+   ```
 
-```bash
-cd WEEK-3/backend-2
-npm install
-```
+2. Make sure MongoDB is running locally.
 
-2. Start MongoDB locally
+3. Start the server:
+   ```
+   node server.js
+   ```
 
-Make sure MongoDB is running locally and available at `mongodb://localhost:27017/anuragDB`.
+4. Server starts at: `http://localhost:3000`
 
-3. Run the server:
+---
 
-```bash
-node server.js
-```
+## Key Concepts
 
-4. The server listens on port `3000`.
+- **Password Hashing**: Passwords are never stored as plain text. `bcryptjs` hashes them with a salt of 10 rounds before saving.
+- **JWT Authentication**: On login, a token is signed with a secret key and stored in an HTTP-only cookie, making it inaccessible to JavaScript (prevents XSS).
+- **Protected Routes**: The `verifyToken` middleware validates the cookie token before allowing access to sensitive routes.
+- **Error Handling**: A global error handler at the end of `server.js` catches Mongoose `ValidationError` and `CastError` and returns clean error messages.
+- **ES Modules**: The project uses `"type":"module"` in `package.json`, so `import/export` syntax is used throughout.
 
-## Notes
-- The project uses `type: module` in `package.json`, so ES module syntax is used throughout.
-- Authentication tokens are stored in an HTTP-only cookie named `token`.
-- The `verifyToken` middleware checks the cookie and protects the user/product list and detail routes.
-
-## Sample Requests
-Use `req.http` and `req1.http` to test the API endpoints with example requests for registration, login, and CRUD operations.
+---

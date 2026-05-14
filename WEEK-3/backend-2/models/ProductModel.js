@@ -1,6 +1,9 @@
+// Mongoose Schema and Model for Product
+// Schema defines the structure and validation rules for product documents in MongoDB
 import {Schema,model} from 'mongoose'
+
+// Define the Product Schema with field types and validation constraints
 const productSchema=new Schema({
-//create User Schema
 
    productId:{
     type:Number,
@@ -21,8 +24,10 @@ brand:{
     required:[true,"brand is required"]
     
 },
-},{versionKey:false,
-    timestamps:true
+},{
+    versionKey:false,   // removes the __v field from documents
+    timestamps:true    // automatically adds createdAt and updatedAt fields
 });
-//generate UserModel
+// Create and export the ProductModel using the schema
+// The first argument "product" becomes the collection name "products" in MongoDB
 export const ProductModel=model("product",productSchema)

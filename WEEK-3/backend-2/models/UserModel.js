@@ -1,6 +1,8 @@
+// Mongoose Schema and Model for User
+// Schema defines the structure and validation rules for user documents in MongoDB
 import {Schema,model} from 'mongoose'
 
-//create User Schema
+// Define the User Schema with field types and validation constraints
 const userSchema=new Schema({
 
    username:{
@@ -23,8 +25,10 @@ age:{
     type:Number,
    
 },
-},{versionKey:false,
-    timestamps:true
+},{
+    versionKey:false,   // removes the __v field from documents
+    timestamps:true    // automatically adds createdAt and updatedAt fields
 });
-//generate UserModel
+// Create and export the UserModel using the schema
+// The first argument "user" becomes the collection name "users" in MongoDB
 export const UserModel=model("user",userSchema)
